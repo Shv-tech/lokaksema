@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body { @apply bg-white text-gray-900 antialiased; }
+
 /* Brand tokens */
 :root {
   --purple-deep: #6B46C1;

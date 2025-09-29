@@ -1,6 +1,6 @@
 ﻿// src/app/(marketing)/layout.tsx
 import type { ReactNode } from "react";
-import "src/styles/globals.css"; // ✅ Adjusted relative path
+import "../../styles/globals.css"; // ✅ Adjusted relative path
 
 function Navbar() {
   return (

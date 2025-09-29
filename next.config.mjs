@@ -1,13 +1,10 @@
-﻿/** @type {import('next').NextConfig} */
+﻿// next.config.mjs (for Next 14.x)
+ /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    serverActions: {
-      bodySizeLimit: '2mb',
-      // allowedOrigins: ['http://localhost:3000'], // optional
-    },
+    serverActions: true,
   },
   // reactStrictMode: true,
-  // images: { remotePatterns: [] },
 };
 
 export default nextConfig;

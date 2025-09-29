@@ -1,25 +1,15 @@
-﻿import type { MetadataRoute } from 'next';
+﻿// src/app/sitemap.ts
+import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://lokaksema.io';
-  const routes = [
-    '',
-    '/about',
-    '/speakers',
-    '/sponsors',
-    '/schedule',
-    '/workshops',
-    '/venue',
-    '/press',
-    '/blog',
-    '/code-of-conduct',
-    '/privacy',
-    '/terms'
-  ];
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://your-domain.com";
+
+  const routes = ["", "about", "speakers", "schedule", "sponsors", "contact"];
 
   return routes.map((route) => ({
-    url: ${baseUrl},
-    changefreq: 'weekly',
-    priority: route === '' ? 1 : 0.8
+    url: `${baseUrl}/${route}`,
+    lastModified: new Date(),
+    changefreq: "weekly",
+    priority: route === "" ? 1 : 0.8,
   }));
 }
