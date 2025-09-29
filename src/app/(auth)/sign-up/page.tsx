@@ -1,8 +1,10 @@
-﻿import { prisma } from "@/lib/prisma"
+﻿"use server"
+
+import { prisma } from "@/lib/prisma"
 import bcrypt from "bcryptjs"
 import { redirect } from "next/navigation"
 
-"use server"
+
 
 async function createUser(formData: FormData) {
   const firstName = String(formData.get("firstName") || "").trim()
