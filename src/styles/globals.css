@@ -1,0 +1,36 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Brand tokens */
+:root {
+  --purple-deep: #6B46C1;
+  --purple-vibrant: #8B5CF6;
+  --pink-hot: #EC4899;
+  --pink-light: #F472B6;
+
+  --gray-soft: #F8FAFC;
+  --gray-medium: #64748B;
+  --gray-dark: #1E293B;
+
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error:   #EF4444;
+}
+
+/* Basic page defaults */
+html, body, #__next { height: 100%; }
+body { @apply text-gray-900 bg-white; }
+
+/* Reusable components */
+@layer components {
+  .card {
+    @apply rounded-xl border bg-white p-4 shadow-sm;
+  }
+}
+
+/* Small utility aliases used in the UI code */
+@layer utilities {
+  .text-gray-medium { color: var(--gray-medium); }
+  .text-purple-deep { color: var(--purple-deep); }
+}
