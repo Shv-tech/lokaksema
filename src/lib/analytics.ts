@@ -20,3 +20,16 @@ body: JSON.stringify({ client_id: clientId, events: [{ name, params }] }),
 lga.warn({ err: e?.message }, "GA4 event failed")
 }
 }
+// Add these exports
+export type Metric = {
+  label: string
+  value: number
+  target?: number
+  percent: number
+}
+
+export function buildMetric(label: string, value: number, target?: number): Metric {
+  const percent = target && target > 0 ? Math.min(1, value / target) : 0
+  return { label, value, target, percent }
+}
+// ...existing code...

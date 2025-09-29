@@ -1,7 +1,9 @@
 import type { ReactNode } from "react"
 import { auth, signOut } from "@/lib/auth"
 import Link from "next/link"
-import "../styles/globals.css"
+// src/app/(app)/layout.tsx
+import "../../styles/globals.css"  // ⬅️ two levels up
+
 
 
 export default async function AppLayout({ children }: { children: ReactNode }) {

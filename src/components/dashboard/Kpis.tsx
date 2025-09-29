@@ -1,5 +1,13 @@
 ﻿import { Card } from '@/components/ui/Card';
-import { buildMetric, computeConversionRate } from '@/lib/analytics';
+// ...existing code...
+import { buildMetric } from '@/lib/analytics'
+// ...existing code...
+
+// Computes the conversion rate as a percentage, rounded to 1 decimal place
+function computeConversionRate(leads: number, registrations: number): number {
+  if (leads === 0) return 0;
+  return Math.round((registrations / leads) * 1000) / 10;
+}
 
 const data = {
   leads: 1280,
@@ -19,7 +27,7 @@ export function Kpis() {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       {metrics.map((metric) => (
-        <Card key={metric.label} title={metric.label} description={Change % vs last period}>
+        <Card key={metric.label} title={metric.label} description={"Change % vs last period"}>
           <p className="text-3xl font-semibold text-white">{metric.value.toLocaleString()}</p>
         </Card>
       ))}

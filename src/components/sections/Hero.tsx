@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
-import { useCountdown } from '@/hooks/useCountdown';
+import { useCountdown } from '../../hooks/useCountdown';
 
 export function Hero() {
   const countdown = useCountdown(new Date('2026-02-12T09:00:00+05:30'));

@@ -14,8 +14,8 @@ export const BarChart: FC<{ data: BarDatum[] }> = ({ data }) => {
         <div key={datum.label} className="flex-1">
           <div
             className="rounded-t-md bg-brand-500"
-            style={{ height: ${(datum.value / max) * 100}%, minHeight: '16px' }}
-            title={${datum.label}: }
+            style={{ height: `${(datum.value / max) * 100}%`, minHeight: '16px' }}
+            title={`${datum.label}: `}
           />
           <p className="mt-2 text-xs text-slate-400">{datum.label}</p>
         </div>
