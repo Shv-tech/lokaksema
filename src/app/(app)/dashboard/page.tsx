@@ -1,4 +1,6 @@
-﻿import { auth } from "@/lib/auth"
+﻿'use client';
+
+import { auth } from "@/lib/auth"
 import { prisma } from "@/lib/prisma"
 
 

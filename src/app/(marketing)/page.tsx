@@ -1,4 +1,6 @@
-﻿import { formatNumber } from "@/lib/utils/format";
+"use client";
+
+import { formatNumber } from "@/lib/utils/format";
 import React from "react";
 
 type Session = {

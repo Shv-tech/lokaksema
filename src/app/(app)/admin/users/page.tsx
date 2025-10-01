@@ -1,4 +1,6 @@
-﻿import { prisma } from "@/lib/prisma"
+﻿'use client';
+
+import { prisma } from "@/lib/prisma"
 import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, AwaitedReactNode } from "react"
 
 

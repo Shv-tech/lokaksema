@@ -1,6 +1,6 @@
 ﻿import type { PropsWithChildren } from 'react';
-import { Navbar } from './Navbar';
-import { Footer } from './Footer';
+import Navbar from './Navbar';
+import Footer from './Footer';
 
 export function Shell({ children }: PropsWithChildren) {
   return (

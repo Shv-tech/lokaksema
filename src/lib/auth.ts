@@ -26,20 +26,7 @@ AzureAD({
   clientId: process.env.AZURE_AD_CLIENT_ID || "",
   clientSecret: process.env.AZURE_AD_CLIENT_SECRET || "",
 }),
-Credentials({
-name: "Email & Password",
-credentials: {
-email: { label: "Email", type: "email" },
-password: { label: "Password", type: "password" },
-},
-async authorize(creds) {
-if (!creds?.email || !creds?.password) return null
-const user = await prisma.user.findUnique({ where: { email: creds.email } })
-if (!user?.passwordHash) return null
-const ok = await bcrypt.compare(String(creds.password), String(user.passwordHash))
-return ok ? { id: user.id, email: user.email, name: user.firstName || user.email } : null
-},
-}),
+
 ],
 callbacks: {
 async session({ session, user }: { session: any; user?: any }) {

@@ -1,4 +1,5 @@
-﻿// src/app/(auth)/sign-up/page.tsx
+﻿'use client';
+
 import { prisma } from "@/lib/prisma";
 import { hash } from "bcryptjs";
 

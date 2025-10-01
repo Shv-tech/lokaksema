@@ -1,7 +1,7 @@
 ﻿'use client';
 
 import Link from 'next/link';
-import { useUiStore } from '@/store/useUiStore';
+import { useUiStore } from '../../../store/useUiStore';
 import { cn } from '@/lib/utils/format';
 
 const navItems = [

@@ -1,4 +1,6 @@
-﻿async function getSessions() {
+﻿'use client';
+
+async function getSessions() {
 const res = await fetch(`${process.env.APP_URL || ""}/api/schedule?includeSpeakers=1`, { cache: "no-store" })
 if (!res.ok) return []
 const data = await res.json()

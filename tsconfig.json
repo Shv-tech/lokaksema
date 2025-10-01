@@ -33,8 +33,7 @@
       "node",
       "react",
       "react-dom"
-    ] // ✅ add these
-    ,
+    ], // ✅ add these
     "esModuleInterop": true,
     "isolatedModules": true,
     "plugins": [

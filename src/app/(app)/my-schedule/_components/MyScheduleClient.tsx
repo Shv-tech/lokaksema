@@ -1,10 +1,10 @@
 ﻿'use client';
 
-import { usePagination } from '@/hooks/usePagination';
+import { usePagination } from '../../../../hooks/usePagination';
 
 const sessions = Array.from({ length: 14 }).map((_, index) => ({
-  id: session-,
-  title: Session ,
+  id: `session-${index}`,
+  title: `Session ${index + 1}`,
   time: '10:00 AM – 11:00 AM',
   location: 'Studio 3'
 }));

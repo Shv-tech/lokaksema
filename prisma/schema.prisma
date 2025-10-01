@@ -27,7 +27,7 @@ model User {
   sessions      Registration[]
   tickets       Ticket[]
   queries       Query[]
-  waitlist      Waitlist?     // 1:1 (inverse side)
+  waitlist      Waitlist?     // 1:1 inverse
 
   accounts      Account[]
   sessionsAuth  Session[]
@@ -95,6 +95,7 @@ model Speaker {
   socials       Json?
   createdAt     DateTime @default(now())
 
+  // many-to-many with AgendaSession (implicit join table)
   sessions      AgendaSession[] @relation("SpeakerSessions")
 }
 
@@ -111,6 +112,7 @@ model AgendaSession {
   materialsUrl String?
   recordingUrl String?
 
+  // many-to-many with Speaker (implicit join table)
   speakers     Speaker[] @relation("SpeakerSessions")
 }
 
@@ -134,9 +136,7 @@ model Registration {
   updatedAt     DateTime      @updatedAt
 
   user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  // Inverse side for Ticket.registration
-  tickets       Ticket[]
+  tickets       Ticket[]      // inverse of Ticket.registration
 }
 
 enum TicketType {
@@ -165,14 +165,17 @@ model Ticket {
 }
 
 model Sponsor {
-  id           String   @id @default(uuid())
-  companyName  String
-  tier         String
-  contactName  String
-  contactEmail String
-  websiteUrl   String
-  createdAt    DateTime @default(now())
-  
+  id            String       @id @default(cuid())
+  companyName   String
+  tier          SponsorTier
+  contractValue Int?
+  logoUrl       String?
+  websiteUrl    String?
+  description   String?
+  contactEmail  String?
+  contactName   String?
+  benefits      Json?
+  createdAt     DateTime     @default(now())
 }
 
 enum SponsorTier {
@@ -197,7 +200,7 @@ model Waitlist {
   status        WaitStatus @default(PENDING)
   createdAt     DateTime   @default(now())
 
-  // 1:1 with User → userId must be unique
+  // 1:1 with User → userId must be unique if present
   userId        String?    @unique
   user          User?      @relation(fields: [userId], references: [id])
 }

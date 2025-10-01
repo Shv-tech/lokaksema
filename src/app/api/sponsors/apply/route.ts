@@ -9,6 +9,4 @@ const parsed = sponsorApplySchema.safeParse(body)
 if (!parsed.success) return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 })
 
 
-const sponsor = await prisma.sponsor.create({ data: parsed.data })
-return NextResponse.json({ id: sponsor.id })
 }

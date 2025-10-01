@@ -50,5 +50,3 @@ return NextResponse.json({ received: true, error: e.message })
 return NextResponse.json({ received: true })
 }
 
-
-export const config = { api: { bodyParser: false } } as any

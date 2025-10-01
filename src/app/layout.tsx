@@ -2,6 +2,10 @@
 import { Inter } from 'next/font/google';
 import '../styles/globals.css';
 import { Providers } from '@/components/layout/Providers';
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+
+
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,7 +19,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="bg-slate-950">
       <body className={inter.className}>
+        <Navbar />
         <Providers>{children}</Providers>
+        <Footer />
       </body>
     </html>
   );
