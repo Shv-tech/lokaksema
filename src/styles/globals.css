@@ -317,3 +317,30 @@ a:hover { text-decoration: none; }
   border-color: var(--border);
   background: linear-gradient(180deg, #0f141c, #0c1017);
 }
+
+
+/* Hide navbar + footer on the homepage (we wrapped them in layout.tsx) */
+.home-video-only .site-navbar,
+.home-video-only .site-footer {
+  display: none !important;
+}
+
+:root { transition: --backdrop-image-opacity 260ms linear; }
+/* --- Scoped background stack helpers --- */
+.bg-stack {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;   /* backgrounds don't block clicks */
+  overflow: hidden;       /* prevents stray scrollbars */
+}
+.bg-stack .bg-layer {
+  position: absolute;
+  inset: 0;
+}
+
+/* Optional: make crossfades a touch smoother */
+:root {
+  transition:
+    --video-opacity 200ms linear,
+    --backdrop-image-opacity 200ms linear;
+}

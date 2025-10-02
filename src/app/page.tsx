@@ -1,33 +1,18 @@
-/* app/page.tsx */
+/* src/app/page.tsx */
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
+import BackgroundVideo from "@/components/effects/BackgroundVideo";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen">
-
-      {/* HERO */}
-      <section className="relative hero-gradient">
-        <div className="blur-blob" />
-        <div className="container-x relative z-10 py-20 md:py-28">
-          <p className="eyebrow">Responsible AI for Humanity</p>
-          <h1 className="section-title mt-3">
-            The World’s AI Well-being Summit
-            <span className="block text-gradient">Lokākṣema 2026</span>
-          </h1>
-          <p className="section-subtitle mt-4 max-w-2xl">
-            Three transformative days of learning, innovation, and collaboration to
-            shape AI that serves people—ethically, safely, and at scale.
-          </p>
-
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <Link href="/landing" className="btn btn-primary">Join the Waitlist</Link>
-            <a href="#schedule" className="btn btn-outline">Explore Sessions</a>
-          </div>
-        </div>
-      </section>
+    <main className="relative min-h-screen overflow-hidden">
+      {/* full-bleed video, no overlays */}
+      <BackgroundVideo mp4="/videos/hero-loop.mp4" webm={undefined} opacity={100} />
 
       {/* SUMMIT BY THE NUMBERS */}
-      <section id="numbers" className="container-x py-16 md:py-24">
+      <section className="relative z-10 container-x py-16 md:py-24" id="numbers">
         <h2 className="section-title text-center">Summit by the Numbers</h2>
         <p className="section-subtitle text-center mt-3">
           Join a global community of leaders, researchers, and innovators shaping the future of responsible AI
@@ -42,49 +27,26 @@ export default function HomePage() {
       </section>
 
       {/* WHAT TO EXPECT */}
-      <section id="expect" className="container-x py-10 md:py-16">
-        <h2 className="section-title text-center">What to <span className="text-gradient">Expect</span></h2>
+      <section className="relative z-10 container-x py-10 md:py-16" id="expect">
+        <h2 className="section-title text-center">
+          What to <span className="text-gradient">Expect</span>
+        </h2>
         <p className="section-subtitle text-center mt-3">
           Three days of immersive learning, networking, and collaboration focused on building AI that serves humanity
         </p>
 
-        <div className="mt-10 grid-cards">
-          <ExpectCard
-            title="World-Class Speakers"
-            desc="Learn from leading AI researchers, technology executives, ethicists, and policy makers shaping the future of responsible AI development."
-            icon="👤"
-          />
-          <ExpectCard
-            title="Cutting-Edge Research"
-            desc="Discover the latest breakthroughs in AI ethics, bias mitigation, algorithmic fairness, and human-centered AI design."
-            icon="📘"
-          />
-          <ExpectCard
-            title="Global Networking"
-            desc="Connect with innovators from 75+ countries, build lasting partnerships, and join a community dedicated to responsible AI."
-            icon="🌐"
-          />
-          <ExpectCard
-            title="Innovation Workshops"
-            desc="Hands-on sessions covering practical frameworks and deployment practices for responsible AI."
-            icon="💡"
-          />
-          <ExpectCard
-            title="Collaborative Solutions"
-            desc="Work together on real-world challenges, share best practices, and develop actionable strategies."
-            icon="🗂️"
-          />
-          <ExpectCard
-            title="Recognition & Awards"
-            desc="Celebrate outstanding contributions through our innovation awards and research recognition program."
-            icon="🏆"
-          />
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {expectData.map((f) => (
+            <FeatureCard key={f.title} {...f} />
+          ))}
         </div>
       </section>
 
       {/* FEATURED SPEAKERS */}
-      <section id="speakers" className="container-x py-16 md:py-24">
-        <h2 className="section-title text-center">Featured <span className="text-gradient">Speakers</span></h2>
+      <section className="relative z-10 container-x py-16 md:py-24" id="speakers">
+        <h2 className="section-title text-center">
+          Featured <span className="text-gradient">Speakers</span>
+        </h2>
         <p className="section-subtitle text-center mt-3">
           Learn from world-renowned experts at the forefront of responsible AI development
         </p>
@@ -116,16 +78,17 @@ export default function HomePage() {
       </section>
 
       {/* PARTNERS */}
-      <section id="partners" className="container-x py-16 md:py-24">
-        <h2 className="section-title text-center">Our <span className="text-gradient">Partners</span></h2>
+      <section className="relative z-10 container-x py-16 md:py-24" id="partners">
+        <h2 className="section-title text-center">
+          Our <span className="text-gradient">Partners</span>
+        </h2>
         <p className="section-subtitle text-center mt-3">
-          Leading organizations committed to responsible AI development and human-centered innovation
+          Leading organizations committed to responsible AI and human-centered innovation
         </p>
 
         <div className="mt-8 flex justify-center">
           <span className="pill pill-platinum">Platinum Partners</span>
         </div>
-
         <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
           <PartnerTile>TechCorp</PartnerTile>
           <PartnerTile>AI Innovations</PartnerTile>
@@ -135,7 +98,6 @@ export default function HomePage() {
         <div className="mt-10 flex justify-center">
           <span className="pill pill-gold">Gold Sponsors</span>
         </div>
-
         <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
           <PartnerTile>DataSystems</PartnerTile>
           <PartnerTile>CloudAI</PartnerTile>
@@ -146,18 +108,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA BAND */}
-      <section className="container-x py-10 md:py-16">
-        <div className="cta-gradient p-8 md:p-10 shadow-soft">
-          <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-center">
-            Ready to Shape the Future?
-          </h3>
-          <p className="section-subtitle text-center mt-2">
+      {/* CTA */}
+      <section className="relative z-10 container-x py-10 md:py-16">
+        <div className="cta-gradient p-8 md:p-10 shadow-soft text-center">
+          <h3 className="text-2xl md:text-3xl font-bold tracking-tight">Ready to Shape the Future?</h3>
+          <p className="section-subtitle mt-2">
             Join us for three transformative days of learning, innovation, and collaboration.
           </p>
           <div className="mt-6 flex justify-center gap-4">
-            <Link href="/landing" className="btn btn-primary">View Full Schedule</Link>
-            <a href="#expect" className="btn btn-ghost">Explore Sessions</a>
+            <Link href="/schedule" className="btn btn-primary">
+              View Full Schedule
+            </Link>
+            <Link href="/speakers" className="btn btn-ghost">
+              Explore Sessions
+            </Link>
           </div>
         </div>
       </section>
@@ -165,7 +129,8 @@ export default function HomePage() {
   );
 }
 
-/* ---------- Tiny presentational components (inline for now) ---------- */
+/* ---------- small components / data (inline for simplicity) ---------- */
+
 function Stat({ value, label }: { value: string; label: string }) {
   return (
     <div className="card-muted shadow-soft text-center">
@@ -176,13 +141,51 @@ function Stat({ value, label }: { value: string; label: string }) {
   );
 }
 
-function ExpectCard({ title, desc, icon }: { title: string; desc: string; icon: string }) {
+const expectData = [
+  {
+    icon: "👤",
+    title: "World-Class Speakers",
+    desc: "Learn from leading AI researchers, executives, ethicists, and policy makers.",
+  },
+  {
+    icon: "📘",
+    title: "Cutting-Edge Research",
+    desc: "Breakthroughs in AI ethics, bias mitigation, and human-centered design.",
+  },
+  {
+    icon: "🌐",
+    title: "Global Networking",
+    desc: "Connect with innovators from 75+ countries and build lasting partnerships.",
+  },
+  {
+    icon: "💡",
+    title: "Innovation Workshops",
+    desc: "Hands-on frameworks and deployment practices for responsible AI.",
+  },
+  {
+    icon: "🗂️",
+    title: "Collaborative Solutions",
+    desc: "Work together on real-world challenges and best practices.",
+  },
+  {
+    icon: "🏆",
+    title: "Recognition & Awards",
+    desc: "Celebrate outstanding contributions to responsible AI.",
+  },
+] satisfies Array<{ icon: string; title: string; desc: string }>;
+
+function FeatureCard({ icon, title, desc }: { icon: string; title: string; desc: string }) {
   return (
-    <div className="card shadow-hover">
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="card shadow-hover"
+    >
       <div className="icon-ring mb-3">{icon}</div>
       <h3 className="text-lg font-semibold">{title}</h3>
       <p className="mt-2 text-slate-600">{desc}</p>
-    </div>
+    </motion.div>
   );
 }
 
@@ -196,8 +199,7 @@ function SpeakerCard(props: {
 }) {
   return (
     <article className="speaker-card shadow-soft">
-      {/* Replace <img> with next/image if you have assets */}
-      <img src="/image/1.svg" alt={props.name} />
+      <img src={props.img} alt={props.name} />
       <div className="absolute inset-x-0 bottom-0 p-4 md:p-5">
         <div className="text-white font-semibold text-lg">{props.name}</div>
         <div className="text-white/90 text-sm">{props.title}</div>
@@ -206,15 +208,17 @@ function SpeakerCard(props: {
       <div className="bg-white">
         {props.tag && (
           <div className="px-4 pt-3">
-            <span className="pill pill-platinum text-xs"> {props.tag} </span>
+            <span className="pill pill-platinum text-xs">{props.tag}</span>
           </div>
         )}
         <p className="px-4 pt-3 text-sm text-slate-600">
-          Technology executive with expertise in scaling AI solutions responsibly across enterprise and government sectors.
+          Technology executive with expertise in scaling AI solutions responsibly across sectors.
         </p>
         <div className="px-4 py-3 flex flex-wrap gap-2">
           {props.tags?.map((t) => (
-            <span key={t} className="tag">{t}</span>
+            <span key={t} className="tag">
+              {t}
+            </span>
           ))}
         </div>
         <div className="px-4 pb-4">

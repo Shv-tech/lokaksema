@@ -1,27 +1,33 @@
-﻿import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import '../styles/globals.css';
-import { Providers } from '@/components/layout/Providers';
+﻿import '../styles/globals.css';
+import type { Metadata } from "next";
+
+
+// If these exist in your project (per your tree), keep them.
+// They will be auto-hidden on the home page by CSS.
+import { Providers } from "@/components/layout/Providers";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-
-
-const inter = Inter({ subsets: ['latin'] });
-
 export const metadata: Metadata = {
-  title: 'Lokaksema 2026',
-  description: 'Lokaksema 2026 is the global summit for responsible innovation and collective action.',
-  metadataBase: new URL('https://lokaksema.io')
+  title: "Lokākṣema 2026",
+  description: "The World’s AI Well-being Summit",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="bg-slate-950">
-      <body className={inter.className}>
-        <Navbar />
-        <Providers>{children}</Providers>
-        <Footer />
+    <html lang="en">
+      {/* IMPORTANT: body must be transparent */}
+      <body>
+          {/* Wrapped so we can hide them on the homepage via CSS */}
+          <div className="site-navbar">
+            <Navbar />
+          </div>
+
+          {children}
+
+          <div className="site-footer">
+            <Footer />
+          </div>
       </body>
     </html>
   );
